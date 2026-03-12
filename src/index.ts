@@ -1,6 +1,7 @@
 import { logger, type IAgentRuntime, type Project, type ProjectAgent } from '@elizaos/core';
 import starterPlugin from './plugin.ts';
 import { character } from './character.ts';
+import { sandwichDetectionPlugin } from './plugins/sandwichDetection.ts';
 
 const initCharacter = ({ runtime }: { runtime: IAgentRuntime }) => {
   logger.info('Initializing character');
@@ -10,7 +11,7 @@ const initCharacter = ({ runtime }: { runtime: IAgentRuntime }) => {
 export const projectAgent: ProjectAgent = {
   character,
   init: async (runtime: IAgentRuntime) => await initCharacter({ runtime }),
-  // plugins: [starterPlugin], <-- Import custom plugins here
+  plugins: [starterPlugin, sandwichDetectionPlugin],
 };
 
 const project: Project = {
@@ -18,5 +19,4 @@ const project: Project = {
 };
 
 export { character } from './character.ts';
-
 export default project;
