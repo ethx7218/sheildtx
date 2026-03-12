@@ -10,7 +10,7 @@ import { type Character } from '@elizaos/core';
  * If you want a stable agent across restarts, add an "id" field with a specific UUID.
  */
 export const character: Character = {
-  name: 'Eliza',
+  name: 'ShieldTx',
   plugins: [
     // Core plugins first
     '@elizaos/plugin-sql',
