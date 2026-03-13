@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hasad Khan — CV (A4 Version)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold:      #B8860B;
+      --gold-lt:   #DAA520;
+      --gold-dim:  rgba(184,134,11,0.05);
+      --dark:      #1a1a1a;
+      --border:    rgba(184,134,11,0.2);
+      --text:      #333333;
+      --muted:     #666666;
+      --white:     #FFFFFF;
+      --bg:        #FFFFFF;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f0f0f0;
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      padding: 0;
+      margin: 0;
+    }
+
+    /* A4 Size Paper */
+    .page {
+      width: 210mm;
+      height: 297mm;
+      background: var(--bg);
+      padding: 18mm 20mm; /* Shaved 7mm */
+      box-shadow: 0 0 20px rgba(0,0,0,0.15);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      border: 8px double var(--gold);
+      outline: 2px solid var(--gold-lt);
+      outline-offset: -12px;
+      overflow: hidden;
+      margin: 20px auto;
+    }
+
+    /* Print styling */
+    @media print {
+      @page { size: A4; margin: 0; }
+      body { background: none; padding: 0; margin: 0; }
+      .page {
+        box-shadow: none;
+        margin: 0;
+        width: 210mm;
+        height: 297mm;
+        padding: 18mm 20mm;
+        border: 10px double var(--gold);
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+      }
+      .print-tip { display: none; }
+    }
+
+    /* ── Header ── */
+    header {
+      border-bottom: 3px solid var(--gold);
+      padding-bottom: 20px;
+      margin-bottom: 25px; /* Shaved 15px */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .name {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.2rem; /* Reduced slightly */
+      color: var(--dark);
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+    }
+    .name span { color: var(--gold); font-weight: 400; }
+
+    .contact-info {
+      text-align: right;
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── Sections ── */
+    section { margin-bottom: 20px; } /* Shaved 15px */
+    
+    .section-title {
+      font-size: 0.85rem;
+      font-weight: 800;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border-bottom: 2.5px solid var(--gold-dim);
+      padding-bottom: 5px;
+      margin-bottom: 12px;
+      position: relative;
+    }
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -2.5px;
+      left: 0;
+      width: 50px;
+      height: 2.5px;
+      background: var(--gold);
+    }
+
+    /* ── Layout Grid ── */
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 65mm;
+      gap: 35px; /* Shaved 5px */
+      flex-grow: 1;
+    }
+
+    /* ── Content items ── */
+    .summary {
+      font-size: 1.05rem; /* Reduced slightly */
+      line-height: 1.7; /* Reduced slightly */
+      color: #333;
+      margin-bottom: 22px; /* Shaved 8px */
+      text-align: justify;
+    }
+    .summary strong { color: var(--gold); font-weight: 700; }
+
+    .entry { margin-bottom: 18px; } /* Shaved 10px */
+    .entry-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+    }
+    .entry-title { font-weight: 700; color: var(--dark); font-size: 1.15rem; }
+    .entry-date { font-size: 0.9rem; color: var(--gold); font-weight: 700; }
+    .entry-sub { font-size: 1rem; color: var(--muted); margin-bottom: 6px; font-weight: 500; font-style: italic; }
+    .entry-desc { font-size: 0.95rem; color: #444; line-height: 1.5; }
+
+    /* ── Sidebar widgets ── */
+    .widget { margin-bottom: 30px; } /* Shaved 10px */
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag {
+      background: var(--white);
+      border: 2px solid var(--gold);
+      color: var(--dark);
+      padding: 5px 12px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .tag:hover { background: var(--gold-dim); }
+
+    .list-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.95rem;
+      margin-bottom: 8px;
+      color: #444;
+      line-height: 1.4;
+    }
+    .dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; margin-top: 7px; flex-shrink: 0; }
+
+
+
+    .print-tip {
+      position: absolute;
+      bottom: 5mm; /* Shaved 5mm */
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 0.65rem;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+  <header>
+    <div>
+      <h1 class="name">Hasad <span>Khan</span></h1>
+    </div>
+    <div class="contact-info">
+      <div>asadkhan89306@gmail.com</div>
+      <div>+91 8930697218</div>
+      <div>Ambala, Haryana</div>
+    </div>
+  </header>
+
+  <div class="grid">
+    <div class="main">
+      <section>
+        <div class="section-title">Profile Summary</div>
+          Creative and resourceful <strong>Vibe Coder</strong> — a self-directed builder who leverages AI tools (Antigravity, Gemini, ChatGPT, Copilot) to design and develop digital experiences. Passionate about ideation, problem-solving, and turning ideas into reality.
+        </p>
+      </section>
+
+      <section>
+        <div class="section-title">Education</div>
+        <div class="entry">
+          <div class="entry-title">Senior Secondary (12th)</div>
+          <div class="entry-sub">Board of School Education Haryana (Open)</div>
+        </div>
+        <div class="entry" style="margin-top: 5px;">
+          <div class="entry-title">Secondary (10th)</div>
+          <div class="entry-sub">Board of School Education Haryana</div>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-title">Work Experience</div>
+        
+        <div class="entry">
+          <div class="entry-header">
+            <div class="entry-title">Contributor — Supra Labs</div>
+            <div class="entry-date">2023 – 2025</div>
+          </div>
+          <div class="entry-desc">Managed and moderated community channels, ensured compliance with platform guidelines, engaged with community members, and helped maintain a healthy ecosystem for the project.</div>
+        </div>
+
+        <div class="entry">
+          <div class="entry-header">
+            <div class="entry-title">Tester — QuickNode</div>
+            <div class="entry-date">2023</div>
+          </div>
+          <div class="entry-desc">Participated in testing blockchain infrastructure tools and RPC endpoints. Provided bug reports and usability feedback to validate platform features.</div>
+        </div>
+
+        <div class="entry">
+          <div class="entry-header">
+            <div class="entry-title">Contributor — NVIR World</div>
+            <div class="entry-date">2021 – 2023</div>
+          </div>
+          <div class="entry-desc">Community moderator, managing discussions, enforcing rules, and supporting onboarding of new members.</div>
+        </div>
+      </section>
+    </div>
+
+    <div class="sidebar">
+      <section class="widget">
+        <div class="section-title">Tools & Skills</div>
+        <div class="skill-tags">
+          <span class="tag">AI-Assisted Development</span>
+          <span class="tag">Antigravity</span>
+          <span class="tag">Flutter (Dart)</span>
+          <span class="tag">VS Code</span>
+          <span class="tag">Android Studio</span>
+          <span class="tag">Mobile Apps</span>
+          <span class="tag">Capacitor</span>
+          <span class="tag">Web3</span>
+        </div>
+      </section>
+
+      <section class="widget">
+        <div class="section-title">Soft Skills</div>
+        <div class="list-item"><div class="dot"></div> Creative Problem Solving</div>
+        <div class="list-item"><div class="dot"></div> Self-Motivated Learner</div>
+        <div class="list-item"><div class="dot"></div> Attention to Detail</div>
+        <div class="list-item"><div class="dot"></div> Fast Execution</div>
+        <div class="list-item"><div class="dot"></div> Idea-to-Product Vision</div>
+      </section>
+
+      <section class="widget">
+        <div class="section-title">Languages</div>
+        <div class="list-item"><div class="dot"></div> Hindi</div>
+        <div class="list-item"><div class="dot"></div> English</div>
+      </section>
+
+      <section class="widget">
+        <div class="section-title">Interests</div>
+        <div class="skill-tags">
+          <span class="tag">Web Building</span>
+          <span class="tag">AI Tools</span>
+          <span class="tag">Game Dev</span>
+          <span class="tag">Web3</span>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="print-tip">
+    💾 Press <strong>Ctrl + P</strong> to save as PDF
+  </div>
+</div>
+
+</body>
+</html>
